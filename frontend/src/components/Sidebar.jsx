@@ -1,18 +1,15 @@
-import React from "react";
-import {
-  User,
-  Settings,
-  Bell,
-  Search,
-  Home,
-  Package,
-  Apple,
-  Leaf,
-  Wind,
-} from "lucide-react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { User, Settings, Bell, Search, Home, Newspaper } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
 const Sidebar = () => {
+  const [activeItem, setActiveItem] = useState("Dashboard");
+
+  const handleItemClick = (item) => {
+    setActiveItem(item);
+  };
+
   return (
     <div className="flex flex-col items-start w-64 h-screen bg-white border-r border-[#dde1e6] p-6 gap-4">
       {/* Top Section with User, Settings, Notifications */}
@@ -49,34 +46,32 @@ const Sidebar = () => {
       {/* Navigation Menu */}
       <nav className="flex flex-col w-full gap-1">
         {/* Dashboard */}
-        <div className="flex items-center gap-2 px-2 py-3 rounded-lg hover:bg-gray-100 cursor-pointer">
+        <Link
+          to="/dashboard"
+          className={`flex items-center gap-2 px-2 py-3 rounded-lg cursor-pointer ${
+            activeItem === "Dashboard"
+              ? "bg-[#1D7D0D] text-white"
+              : "hover:bg-gray-100"
+          }`}
+          onClick={() => handleItemClick("Dashboard")}
+        >
           <Home className="w-6 h-6" />
           <span className="text-base font-medium">Dashboard</span>
-        </div>
+        </Link>
 
-        {/* Product (with submenu) */}
-        <div className="flex items-center gap-2 px-2 py-3 rounded-lg hover:bg-gray-100 cursor-pointer">
-          <Package className="w-6 h-6" />
-          <span className="text-base font-medium">Product</span>
-        </div>
-
-        {/* Submenu Items */}
-        <div className="flex flex-col pl-10 gap-1">
-          <div className="flex items-center gap-2 px-2 py-3 text-base hover:bg-gray-100 cursor-pointer">
-            <Apple className="w-5 h-5" />
-            <span>Fruits</span>
-          </div>
-
-          <div className="flex items-center gap-2 px-2 py-3 text-base hover:bg-gray-100 cursor-pointer">
-            <Leaf className="w-5 h-5" />
-            <span>Vegetable</span>
-          </div>
-
-          <div className="flex items-center gap-2 px-2 py-3 text-base hover:bg-gray-100 cursor-pointer">
-            <Wind className="w-5 h-5" />
-            <span>Tobacco</span>
-          </div>
-        </div>
+        {/* News */}
+        <Link
+          to="/news"
+          className={`flex items-center gap-2 px-2 py-3 rounded-lg cursor-pointer ${
+            activeItem === "News"
+              ? "bg-[#1D7D0D] text-white"
+              : "hover:bg-gray-100"
+          }`}
+          onClick={() => handleItemClick("News")}
+        >
+          <Newspaper className="w-6 h-6" />
+          <span className="text-base font-medium">News</span>
+        </Link>
       </nav>
     </div>
   );

@@ -1,15 +1,22 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
+import News from "./pages/News";
 
 const App = () => {
   return (
-    <div className="flex h-screen bg-gray-100">
-      <Sidebar />
-      <main className="flex-1 overflow-auto">
-        <Dashboard />
-      </main>
-    </div>
+    <Router>
+      <div className="flex">
+        <Sidebar />
+        <div className="flex-grow p-6">
+          <Routes>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/news" element={<News />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 };
 
