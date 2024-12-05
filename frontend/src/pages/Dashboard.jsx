@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Calendar, Map, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import axios from "axios";
 import {
   LineChart,
   Line,
@@ -14,9 +13,11 @@ import {
 } from "recharts";
 
 const Dashboard = () => {
+  const [existingData, setExistingData] = useState([]);
   const [forecastData, setForecastData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const combinedData = useRef({ existing: [], forecast: [] });
   const backend = import.meta.env.VITE_BACKEND_URL;
   const authKey = import.meta.env.VITE_AUTH_KEY;
 
@@ -45,17 +46,60 @@ const Dashboard = () => {
       const data = await response.json();
 
       console.log("Response Data:", data);
-      setForecastData(data);
-      setLoading(false);
+      combinedData.current.forecast = data;
+      logCombinedData();
     } catch (err) {
       setError(err.message);
-      setLoading(false);
       console.error("Error fetching forecast data:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchExistingData = async () => {
+    try {
+      setLoading(true);
+
+      const requestBody = {
+        komoditas: 1170,
+      };
+
+      const response = await fetch(`${backend}/existing`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${authKey}`,
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      console.log("Response Data:", data);
+      combinedData.current.existing = data;
+      logCombinedData();
+    } catch (err) {
+      setError(err.message);
+      console.error("Error fetching existing data:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const logCombinedData = () => {
+    const { forecast, existing } = combinedData.current;
+    if (forecast && existing) {
+      console.log("Combined Data:", { forecast, existing });
     }
   };
 
   useEffect(() => {
     fetchForecastData();
+    fetchExistingData();
   }, []);
 
   return (
@@ -151,19 +195,36 @@ const Dashboard = () => {
             ) : error ? (
               <p className="text-red-500">{error}</p>
             ) : (
-              <LineChart
-                margin={{ left: 50, right: 20 }}
-                width={600}
-                height={300}
-                data={forecastData}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="tahun" />
-                <YAxis datakey="produksi" />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="produksi" stroke="#EF4444" />
-              </LineChart>
+              <>
+                {console.log(combinedData)}
+                <LineChart
+                  margin={{ left: 50, right: 20 }}
+                  width={600}
+                  height={300}
+                  data={[
+                    ...combinedData.current.existing,
+                    ...combinedData.current.forecast,
+                  ]}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="tahun" />
+                  <YAxis dataKey="produksi" />
+                  <Tooltip />
+                  <Legend />
+                  <Line
+                    type="monotone" // Mengubah model garis menjadi monotone
+                    dataKey="produksi"
+                    stroke="#EF4444"
+                    name="Existing Production"
+                  />
+                  <Line
+                    type="monotone" // Mengubah model garis menjadi basis
+                    dataKey="produksi"
+                    stroke="#3B82F6"
+                    name="Forecast Production"
+                  />
+                </LineChart>
+              </>
             )}
           </CardContent>
         </Card>
