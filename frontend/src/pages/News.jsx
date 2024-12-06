@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import NewsItem from "../components/NewsItem"; // Pastikan path menuju komponen benar
-import { Button } from "@/components/ui/button"; // Pastikan path menuju komponen benar
 
 const News = () => {
   const backend = import.meta.env.VITE_BACKEND_URL;
@@ -8,9 +7,7 @@ const News = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [newsData, setNewsData] = useState([]);
-  const [comment, setComment] = useState("");
-  const maxCharacters = 500;
-
+  const [analysis, setAnalysis] = useState([]);
   const fetchNewsData = async () => {
     try {
       setLoading(true);
@@ -29,7 +26,6 @@ const News = () => {
 
       const data = await response.json();
       setNewsData(data);
-
     } catch (err) {
       setError(err.message);
       console.error("Error fetching news data:", err);
@@ -38,8 +34,46 @@ const News = () => {
     }
   };
 
+  const fetchAnalysis = async () => {
+    try {
+      setLoading(true);
+
+      const response = await fetch(`${backend}/llm-analysis`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${authKey}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+      let result = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        result += decoder.decode(value, { stream: true });
+        console.log(result); // Process the stream data as needed
+      }
+
+      setAnalysis(result);
+      console.log("Stream complete:", result);
+    } catch (err) {
+      setError(err.message);
+      console.error("Error fetching analysis data:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchNewsData();
+    fetchAnalysis();
   }, []);
 
   return (
@@ -50,40 +84,66 @@ const News = () => {
         </h1>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-16">
-          {newsData.map((news, index) => (
-            <a
-              href={news.link}
-              key={index}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <NewsItem
-                position={news.position}
-                title={news.title}
-                source={news.source}
-                date={news.date}
-                imageUrl={news.thumbnail}
-                snippet={news.snippet}
-              />
-            </a>
-          ))}
-        </div>
-        <div className="relative flex flex-col justify items-end p-4 gap-2 w-full h-[162px] bg-white border border-gray-400 rounded-lg mt-20">
-          <input
-            type="text"
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            maxLength={maxCharacters}
-            className="w-full h-10 p-2 border-none rounded m-2 mb-2"
-            placeholder="Place your prompt here..."
-          />
-          <div className="absolute left-4 bottom-4 text-sm text-gray-500 m-2">
-            {comment.length}/{maxCharacters}
+        <div className="flex flex-row w-full gap-x-8">
+          <div className="flex flex-col gap-y-10 w-1/2">
+            {newsData.map((news, index) => (
+              <a
+                href={news.link}
+                key={index}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <NewsItem
+                  position={news.position}
+                  title={news.title}
+                  source={news.source}
+                  date={news.date}
+                  imageUrl={news.thumbnail}
+                  snippet={news.snippet}
+                />
+              </a>
+            ))}
           </div>
-          <Button className="absolute right-4 bottom-4 h-10 bg-green-500 text-white rounded m-2">
-            Submit
-          </Button>
+          <div className="w-1/2 ml-4 bg-white shadow-xl rounded-2xl border border-gray-150 overflow-hidden">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4 px-5 pt-5 pb-3 border-b border-gray-100">
+              Summary
+            </h2>
+            <p
+              className="text-sm text-gray-900 whitespace-pre-wrap px-5 pb-5 min-h-[120px] 
+               text-justify leading-relaxed"
+              aria-live="polite"
+            >
+              {loading ? (
+                <div className="flex items-center text-gray-700">
+                  <svg
+                    className="animate-spin -ml-1 mr-3 h-5 w-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  <span>Loading summary...</span>
+                </div>
+              ) : error ? (
+                <span className="text-red-600">Error: {error}</span>
+              ) : (
+                analysis
+              )}
+            </p>
+          </div>
         </div>
       </div>
     </div>
