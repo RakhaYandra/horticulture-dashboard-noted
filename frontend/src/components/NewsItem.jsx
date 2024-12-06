@@ -25,7 +25,7 @@ const NewsItem = ({ source, date, title, snippet, imageUrl }) => {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M19.5 21h-15a2.25-2.25 0-01-2.25-2.25v-15A2.25 2.25 0-014.5 1.5h15a2.25 2.25 0-012.25 2.25v15A2.25 2.25 0-0119.5 21z"
+                d="M19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-15A2.25 2.25 0 0 1 4.5 1.5h15a2.25 2.25 0 0 1 2.25 2.25v15A2.25 2.25 0 0 1 19.5 21z"
               />
             </svg>
             {date}
