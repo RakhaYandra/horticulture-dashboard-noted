@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import komoditas from "@/data/komoditas.json";
 import { Calendar, Map, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -15,76 +16,84 @@ import {
 const Dashboard = () => {
   const [existingData, setExistingData] = useState([]);
   const [forecastData, setForecastData] = useState([]);
+  const [filter, setFilter] = useState("1168");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const combinedData = useRef({ existing: [], forecast: [] });
   const backend = import.meta.env.VITE_BACKEND_URL;
   const authKey = import.meta.env.VITE_AUTH_KEY;
 
-  // Function to fetch forecast data
-  const fetchForecastData = async () => {
-    try {
-      setLoading(true);
+  const handlefilterChange = (event) => {
+    const newFilter = event.target.value;
+    setFilter(newFilter);
 
-      const requestBody = {
-        komoditas: 1170,
-      };
-
-      const response = await fetch(`${backend}/forecast`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${authKey}`,
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      console.log("Response Data:", data);
-      combinedData.current.forecast = data;
-      logCombinedData();
-    } catch (err) {
-      setError(err.message);
-      console.error("Error fetching forecast data:", err);
-    } finally {
-      setLoading(false);
-    }
+    // Fetch data based on the new filter
+    fetchData(newFilter);
   };
 
-  const fetchExistingData = async () => {
+  const fetchForecastData = async (newFilter) => {
+    const requestBody = {
+      komoditas: newFilter,
+    };
+
+    const response = await fetch(`${backend}/forecast`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${authKey}`,
+      },
+      body: JSON.stringify(requestBody),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Error Data:", errorData);
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  };
+
+  const fetchExistingData = async (newFilter) => {
+    const requestBody = {
+      komoditas: newFilter,
+    };
+
+    const response = await fetch(`${backend}/existing`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${authKey}`,
+      },
+      body: JSON.stringify(requestBody),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Error Data:", errorData);
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  };
+
+  const fetchData = async (newFilter) => {
     try {
       setLoading(true);
+      setError(null);
 
-      const requestBody = {
-        komoditas: 1170,
-      };
+      const [forecast, existing] = await Promise.all([
+        fetchForecastData(newFilter),
+        fetchExistingData(newFilter),
+      ]);
 
-      const response = await fetch(`${backend}/existing`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${authKey}`,
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      console.log("Response Data:", data);
-      combinedData.current.existing = data;
+      combinedData.current = { forecast, existing };
       logCombinedData();
     } catch (err) {
       setError(err.message);
-      console.error("Error fetching existing data:", err);
+      console.error("Error fetching data:", err);
     } finally {
       setLoading(false);
     }
@@ -98,8 +107,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    fetchForecastData();
-    fetchExistingData();
+    fetchData(filter);
   }, []);
 
   return (
@@ -169,25 +177,21 @@ const Dashboard = () => {
         <Card>
           <CardContent className="p-6">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-lg font-semibold">Production Forecast</h3>
+              <h3 className="text-lg font-semibold">
+                Production Existing & Forecast
+              </h3>
               <div className="flex gap-2">
-                <Button
-                  variant="default"
-                  className="bg-green-600 hover:bg-green-700"
+                <select
+                  value={filter}
+                  onChange={handlefilterChange}
+                  className="bg-green-600 text-white px-3 py-2 rounded"
                 >
-                  Monthly
-                </Button>
-                <Button variant="outline">Yearly</Button>
-              </div>
-            </div>
-            <div className="flex gap-6 mb-4">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <span>Current Year</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                <span>Past Year</span>
+                  {komoditas.map((item) => (
+                    <option key={item.fkomcd} value={item.fkomcd}>
+                      {item.fkomnm}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
             {loading ? (
@@ -212,16 +216,10 @@ const Dashboard = () => {
                   <Tooltip />
                   <Legend />
                   <Line
-                    type="monotone" // Mengubah model garis menjadi monotone
+                    type="monotone"
                     dataKey="produksi"
                     stroke="#EF4444"
-                    name="Existing Production"
-                  />
-                  <Line
-                    type="monotone" // Mengubah model garis menjadi basis
-                    dataKey="produksi"
-                    stroke="#3B82F6"
-                    name="Forecast Production"
+                    name="Production"
                   />
                 </LineChart>
               </>

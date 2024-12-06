@@ -1,0 +1,638 @@
+[
+    {
+        "fkomcd": "01168",
+        "fkomnm": "ADENIUM",
+        "fkomnme": "",
+        "fsipedas": "ADN"
+    },
+    {
+        "fkomcd": "01167",
+        "fkomnm": "AGLAOENEMA",
+        "fkomnme": "",
+        "fsipedas": "AGL"
+    },
+    {
+        "fkomcd": "01001",
+        "fkomnm": "ALPUKAT",
+        "fkomnme": "AVOCADO",
+        "fsipedas": "ALP"
+    },
+    {
+        "fkomcd": "01136",
+        "fkomnm": "ANGGREK",
+        "fkomnme": "Orchid",
+        "fsipedas": "AGR"
+    },
+    {
+        "fkomcd": "01198",
+        "fkomnm": "ANGGREK POT",
+        "fkomnme": "",
+        "fsipedas": "AGRPOT"
+    },
+    {
+        "fkomcd": "01199",
+        "fkomnm": "ANGGREK POTONG",
+        "fkomnme": "",
+        "fsipedas": "AGRPTG"
+    },
+    {
+        "fkomcd": "01164",
+        "fkomnm": "ANGGUR",
+        "fkomnme": "GRAPE",
+        "fsipedas": "ANG"
+    },
+    {
+        "fkomcd": "01137",
+        "fkomnm": "ANTHURIUM BUNGA",
+        "fkomnme": "ANTHURIUM BUNGA",
+        "fsipedas": "ATHBU"
+    },
+    {
+        "fkomcd": "01177",
+        "fkomnm": "ANTHURIUM DAUN",
+        "fkomnme": "ANTHURIUM",
+        "fsipedas": "ATHDN"
+    },
+    {
+        "fkomcd": "01153",
+        "fkomnm": "ANYELIR",
+        "fkomnme": "",
+        "fsipedas": "ANY"
+    },
+    {
+        "fkomcd": "01165",
+        "fkomnm": "APEL",
+        "fkomnme": "APPLE",
+        "fsipedas": "APL"
+    },
+    {
+        "fkomcd": "01002",
+        "fkomnm": "BAWANG DAUN",
+        "fkomnme": "LEEKS",
+        "fsipedas": "BWD"
+    },
+    {
+        "fkomcd": "01003",
+        "fkomnm": "BAWANG MERAH",
+        "fkomnme": "SHALLOTS",
+        "fsipedas": "BMR"
+    },
+    {
+        "fkomcd": "01006",
+        "fkomnm": "BAWANG PUTIH",
+        "fkomnme": "GARLIC",
+        "fsipedas": "BPT"
+    },
+    {
+        "fkomcd": "01011",
+        "fkomnm": "BAYAM",
+        "fkomnme": "SPINACH",
+        "fsipedas": "BYMSY"
+    },
+    {
+        "fkomcd": "01012",
+        "fkomnm": "BELIMBING",
+        "fkomnme": "STAR FRUIT",
+        "fsipedas": "BLI"
+    },
+    {
+        "fkomcd": "01015",
+        "fkomnm": "BLEWAH",
+        "fkomnme": "CANTALOUPE",
+        "fsipedas": "BLW"
+    },
+    {
+        "fkomcd": "01185",
+        "fkomnm": "BROMELIA",
+        "fkomnme": "BROMELIA",
+        "fsipedas": "BML"
+    },
+    {
+        "fkomcd": "01186",
+        "fkomnm": "BUAH NAGA",
+        "fkomnme": "PITAYA",
+        "fsipedas": "NAG"
+    },
+    {
+        "fkomcd": "01188",
+        "fkomnm": "BUGENVIL",
+        "fkomnme": "",
+        "fsipedas": "BOG"
+    },
+    {
+        "fkomcd": "01016",
+        "fkomnm": "BUNCIS",
+        "fkomnme": "GREEN BEANS",
+        "fsipedas": "BCS"
+    },
+    {
+        "fkomcd": "01133",
+        "fkomnm": "CABE BESAR",
+        "fkomnme": "",
+        "fsipedas": "CBB"
+    },
+    {
+        "fkomcd": "01194",
+        "fkomnm": "CABE KERITING",
+        "fkomnme": "",
+        "fsipedas": "CBBKR"
+    },
+    {
+        "fkomcd": "01132",
+        "fkomnm": "CABE RAWIT",
+        "fkomnme": "",
+        "fsipedas": "CRW"
+    },
+    {
+        "fkomcd": "01200",
+        "fkomnm": "CABE TEROPONG",
+        "fkomnme": "",
+        "fsipedas": "CBBTW"
+    },
+    {
+        "fkomcd": "01178",
+        "fkomnm": "CALADIUM",
+        "fkomnme": "",
+        "fsipedas": "CAL"
+    },
+    {
+        "fkomcd": "01174",
+        "fkomnm": "CORDYLENE",
+        "fkomnme": "",
+        "fsipedas": "COR"
+    },
+    {
+        "fkomcd": "01175",
+        "fkomnm": "DIEFFENBACHIA",
+        "fkomnme": "",
+        "fsipedas": "DIF"
+    },
+    {
+        "fkomcd": "01155",
+        "fkomnm": "DRACAENA",
+        "fkomnme": "",
+        "fsipedas": "DCN"
+    },
+    {
+        "fkomcd": "01152",
+        "fkomnm": "DRINGO",
+        "fkomnme": "",
+        "fsipedas": "DLI"
+    },
+    {
+        "fkomcd": "01022",
+        "fkomnm": "DUKU / LANGSAT",
+        "fkomnme": "LANZON",
+        "fsipedas": "DKU"
+    },
+    {
+        "fkomcd": "01023",
+        "fkomnm": "DURIAN",
+        "fkomnme": "DURIAN",
+        "fsipedas": "DUR"
+    },
+    {
+        "fkomcd": "01169",
+        "fkomnm": "EUPHORBIA",
+        "fkomnme": "",
+        "fsipedas": "EUP"
+    },
+    {
+        "fkomcd": "01154",
+        "fkomnm": "GERBERA/HERBRAS",
+        "fkomnme": "",
+        "fsipedas": "GER"
+    },
+    {
+        "fkomcd": "01138",
+        "fkomnm": "GLADIOL",
+        "fkomnme": "GLADIOL",
+        "fsipedas": "GLA"
+    },
+    {
+        "fkomcd": "01139",
+        "fkomnm": "HELICONIA",
+        "fkomnme": "HELICONIA",
+        "fsipedas": "PSHHL"
+    },
+    {
+        "fkomcd": "01163",
+        "fkomnm": "JAHE",
+        "fkomnme": "GINGER",
+        "fsipedas": "JHE"
+    },
+    {
+        "fkomcd": "01130",
+        "fkomnm": "JAMBU AIR",
+        "fkomnme": "",
+        "fsipedas": "JBA"
+    },
+    {
+        "fkomcd": "01028",
+        "fkomnm": "JAMBU BIJI",
+        "fkomnme": "GUAVA",
+        "fsipedas": "JBJ"
+    },
+    {
+        "fkomcd": "01122",
+        "fkomnm": "JAMUR",
+        "fkomnme": "MUSHROOMS",
+        "fsipedas": "JMR"
+    },
+    {
+        "fkomcd": "01197",
+        "fkomnm": "JAMUR LAINNYA",
+        "fkomnme": "",
+        "fsipedas": "JMRLL"
+    },
+    {
+        "fkomcd": "01195",
+        "fkomnm": "JAMUR MERANG",
+        "fkomnme": "",
+        "fsipedas": "JMRMR"
+    },
+    {
+        "fkomcd": "01196",
+        "fkomnm": "JAMUR TIRAM",
+        "fkomnme": "",
+        "fsipedas": "JMRTR"
+    },
+    {
+        "fkomcd": "01180",
+        "fkomnm": "JENGKOL",
+        "fkomnme": "",
+        "fsipedas": "JKL"
+    },
+    {
+        "fkomcd": "01131",
+        "fkomnm": "JERUK BESAR",
+        "fkomnme": "",
+        "fsipedas": "JRKBS"
+    },
+    {
+        "fkomcd": "01190",
+        "fkomnm": "JERUK LEMON",
+        "fkomnme": "",
+        "fsipedas": "JRKLM"
+    },
+    {
+        "fkomcd": "01192",
+        "fkomnm": "JERUK NIPIS",
+        "fkomnme": "",
+        "fsipedas": "JRKNP"
+    },
+    {
+        "fkomcd": "01191",
+        "fkomnm": "JERUK PAMELO",
+        "fkomnme": "",
+        "fsipedas": "JRKBS"
+    },
+    {
+        "fkomcd": "01162",
+        "fkomnm": "JERUK SIAM",
+        "fkomnme": "",
+        "fsipedas": "JRKSI"
+    },
+    {
+        "fkomcd": "01033",
+        "fkomnm": "KACANG MERAH",
+        "fkomnme": "KIDNEY BEANS",
+        "fsipedas": "KCGMR"
+    },
+    {
+        "fkomcd": "01034",
+        "fkomnm": "KACANG PANJANG",
+        "fkomnme": "STRING BEANS",
+        "fsipedas": "KCGPJ"
+    },
+    {
+        "fkomcd": "01038",
+        "fkomnm": "KANGKUNG",
+        "fkomnme": "SWAMP CABBAGE",
+        "fsipedas": "KKG"
+    },
+    {
+        "fkomcd": "01156",
+        "fkomnm": "KAPULAGA",
+        "fkomnme": "CARDAMOM",
+        "fsipedas": "KLG"
+    },
+    {
+        "fkomcd": "01151",
+        "fkomnm": "KEJIBELING",
+        "fkomnme": "",
+        "fsipedas": "KJB"
+    },
+    {
+        "fkomcd": "01115",
+        "fkomnm": "KEMBANG KOL",
+        "fkomnme": "",
+        "fsipedas": "KBK"
+    },
+    {
+        "fkomcd": "01146",
+        "fkomnm": "KENCUR",
+        "fkomnme": "",
+        "fsipedas": "KCU"
+    },
+    {
+        "fkomcd": "01043",
+        "fkomnm": "KENTANG",
+        "fkomnme": "POTATOES",
+        "fsipedas": "KTG"
+    },
+    {
+        "fkomcd": "01044",
+        "fkomnm": "KETIMUN",
+        "fkomnme": "CUCUMBER",
+        "fsipedas": "TMN"
+    },
+    {
+        "fkomcd": "01046",
+        "fkomnm": "KOL / KUBIS",
+        "fkomnme": "CABBAGE",
+        "fsipedas": "KBS"
+    },
+    {
+        "fkomcd": "01140",
+        "fkomnm": "KRISAN",
+        "fkomnme": "CRYSANTHIMUM",
+        "fsipedas": "KRS"
+    },
+    {
+        "fkomcd": "01147",
+        "fkomnm": "KUNYIT",
+        "fkomnme": "",
+        "fsipedas": "KNY"
+    },
+    {
+        "fkomcd": "01048",
+        "fkomnm": "LABU SIAM",
+        "fkomnme": "CHAYOTTE",
+        "fsipedas": "LBUSI"
+    },
+    {
+        "fkomcd": "01148",
+        "fkomnm": "LEMPUYANG",
+        "fkomnme": "",
+        "fsipedas": "LPY"
+    },
+    {
+        "fkomcd": "01187",
+        "fkomnm": "LENGKENG",
+        "fkomnme": "",
+        "fsipedas": "LKG"
+    },
+    {
+        "fkomcd": "01145",
+        "fkomnm": "LENGKUAS",
+        "fkomnme": "",
+        "fsipedas": "LKS"
+    },
+    {
+        "fkomcd": "01182",
+        "fkomnm": "LIDAH BUAYA",
+        "fkomnme": "ALOE VERA",
+        "fsipedas": "LBY"
+    },
+    {
+        "fkomcd": "01052",
+        "fkomnm": "LOBAK",
+        "fkomnme": "RADISH",
+        "fsipedas": "LBK"
+    },
+    {
+        "fkomcd": "01183",
+        "fkomnm": "MAHKOTA DEWA",
+        "fkomnme": "",
+        "fsipedas": "MDW"
+    },
+    {
+        "fkomcd": "01054",
+        "fkomnm": "MANGGA",
+        "fkomnme": "MANGO",
+        "fsipedas": "MGA"
+    },
+    {
+        "fkomcd": "01055",
+        "fkomnm": "MANGGIS",
+        "fkomnme": "MANGGISTO",
+        "fsipedas": "MGS"
+    },
+    {
+        "fkomcd": "01161",
+        "fkomnm": "MARKISA",
+        "fkomnme": "MARKISA",
+        "fsipedas": "MKS"
+    },
+    {
+        "fkomcd": "01141",
+        "fkomnm": "MAWAR",
+        "fkomnme": "ROSE",
+        "fsipedas": "MWR"
+    },
+    {
+        "fkomcd": "01143",
+        "fkomnm": "MELATI",
+        "fkomnme": "JASMINE",
+        "fsipedas": "MLT"
+    },
+    {
+        "fkomcd": "01134",
+        "fkomnm": "MELINJO",
+        "fkomnme": "",
+        "fsipedas": "MLJ"
+    },
+    {
+        "fkomcd": "01056",
+        "fkomnm": "MELON",
+        "fkomnme": "MELON",
+        "fsipedas": "MLN"
+    },
+    {
+        "fkomcd": "01158",
+        "fkomnm": "MENGKUDU/PACE",
+        "fkomnme": "",
+        "fsipedas": "MDU"
+    },
+    {
+        "fkomcd": "01172",
+        "fkomnm": "MONSTERA",
+        "fkomnme": "",
+        "fsipedas": "MNS"
+    },
+    {
+        "fkomcd": "01057",
+        "fkomnm": "NANGKA / CEMPEDAK",
+        "fkomnme": "JACKFRUITS",
+        "fsipedas": "NKA"
+    },
+    {
+        "fkomcd": "01058",
+        "fkomnm": "NENAS",
+        "fkomnme": "PINEAPPLE",
+        "fsipedas": "NNS"
+    },
+    {
+        "fkomcd": "01171",
+        "fkomnm": "PAKIS",
+        "fkomnme": "",
+        "fsipedas": "PKS"
+    },
+    {
+        "fkomcd": "01144",
+        "fkomnm": "PALEM",
+        "fkomnme": "PALMA",
+        "fsipedas": "PLM"
+    },
+    {
+        "fkomcd": "01181",
+        "fkomnm": "PAPRIKA",
+        "fkomnme": "",
+        "fsipedas": "PPR"
+    },
+    {
+        "fkomcd": "01062",
+        "fkomnm": "PEPAYA",
+        "fkomnme": "PAPAYA",
+        "fsipedas": "PPY"
+    },
+    {
+        "fkomcd": "01135",
+        "fkomnm": "PETAI",
+        "fkomnme": "",
+        "fsipedas": "PTE"
+    },
+    {
+        "fkomcd": "01063",
+        "fkomnm": "PETSAI / SAWI",
+        "fkomnme": "MUSTARD GREENS",
+        "fsipedas": "SWI"
+    },
+    {
+        "fkomcd": "01170",
+        "fkomnm": "PHYLODENDRON",
+        "fkomnme": "",
+        "fsipedas": "PHY"
+    },
+    {
+        "fkomcd": "01064",
+        "fkomnm": "PISANG",
+        "fkomnme": "BANANA",
+        "fsipedas": "PSG"
+    },
+    {
+        "fkomcd": "01189",
+        "fkomnm": "PURING",
+        "fkomnme": "",
+        "fsipedas": "PUR"
+    },
+    {
+        "fkomcd": "01066",
+        "fkomnm": "RAMBUTAN",
+        "fkomnme": "RAMBUTAN",
+        "fsipedas": "RBT"
+    },
+    {
+        "fkomcd": "01067",
+        "fkomnm": "SALAK",
+        "fkomnme": "SALACIA",
+        "fsipedas": "SLK"
+    },
+    {
+        "fkomcd": "01159",
+        "fkomnm": "SAMBILOTO",
+        "fkomnme": "",
+        "fsipedas": "SBL"
+    },
+    {
+        "fkomcd": "01176",
+        "fkomnm": "SANSEVIERRIA",
+        "fkomnme": "",
+        "fsipedas": "SVR"
+    },
+    {
+        "fkomcd": "01069",
+        "fkomnm": "SAWO",
+        "fkomnme": "SAPODILLA",
+        "fsipedas": "SWO"
+    },
+    {
+        "fkomcd": "01142",
+        "fkomnm": "SEDAP MALAM",
+        "fkomnme": "",
+        "fsipedas": "SDM"
+    },
+    {
+        "fkomcd": "01070",
+        "fkomnm": "SEMANGKA",
+        "fkomnme": "WATER MELON",
+        "fsipedas": "SMK"
+    },
+    {
+        "fkomcd": "01193",
+        "fkomnm": "SERAI HIJAU",
+        "fkomnme": "",
+        "fsipedas": "SREHJ"
+    },
+    {
+        "fkomcd": "01071",
+        "fkomnm": "SIRSAK",
+        "fkomnme": "SOURSOP",
+        "fsipedas": "SSK"
+    },
+    {
+        "fkomcd": "01173",
+        "fkomnm": "SOKA",
+        "fkomnme": "",
+        "fsipedas": "SKA"
+    },
+    {
+        "fkomcd": "01166",
+        "fkomnm": "STRAWBERRY",
+        "fkomnme": "",
+        "fsipedas": "SBR"
+    },
+    {
+        "fkomcd": "01072",
+        "fkomnm": "SUKUN",
+        "fkomnme": "BREADFRUIT",
+        "fsipedas": "SKN"
+    },
+    {
+        "fkomcd": "01150",
+        "fkomnm": "TEMUIRENG",
+        "fkomnme": "",
+        "fsipedas": "TMUIR"
+    },
+    {
+        "fkomcd": "01160",
+        "fkomnm": "TEMUKUNCI",
+        "fkomnme": "",
+        "fsipedas": "TMUKC"
+    },
+    {
+        "fkomcd": "01149",
+        "fkomnm": "TEMULAWAK",
+        "fkomnme": "",
+        "fsipedas": "TMULW"
+    },
+    {
+        "fkomcd": "01075",
+        "fkomnm": "TERUNG",
+        "fkomnme": "EGG PLANT",
+        "fsipedas": "TRG"
+    },
+    {
+        "fkomcd": "01076",
+        "fkomnm": "TOMAT",
+        "fkomnme": "TOMATOES",
+        "fsipedas": "TMT"
+    },
+    {
+        "fkomcd": "01079",
+        "fkomnm": "WORTEL",
+        "fkomnme": "CARROTS",
+        "fsipedas": "WTL"
+    }
+]
