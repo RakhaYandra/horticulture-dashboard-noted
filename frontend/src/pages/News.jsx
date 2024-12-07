@@ -85,7 +85,7 @@ const News = () => {
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
         <div className="flex flex-row w-full gap-x-8">
-          <div className="flex flex-col gap-y-10 w-1/2">
+          <div className="flex flex-col gap-y-10 w-1/2 mt-2">
             {newsData.map((news, index) => (
               <a
                 href={news.link}

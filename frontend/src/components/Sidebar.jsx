@@ -47,7 +47,7 @@ const Sidebar = () => {
       <nav className="flex flex-col w-full gap-1">
         {/* Dashboard */}
         <Link
-          to="/dashboard"
+          to="/"
           className={`flex items-center gap-2 px-2 py-3 rounded-lg cursor-pointer ${
             activeItem === "Dashboard"
               ? "bg-[#1D7D0D] text-white"
