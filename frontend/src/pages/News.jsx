@@ -79,7 +79,7 @@ const News = () => {
   return (
     <div className="flex flex-col items-center p-0 w-full">
       <div className="flex flex-col items-start w-full px-4 md:px-8 lg:px-16">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-left w-full">
+        <h1 className="text-3xl font-bold text-gray-800 mb-8 text-left w-full">
           News Summary
         </h1>
         {loading && <p>Loading...</p>}
