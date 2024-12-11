@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import Select from "react-select";
 import komoditas from "@/data/komoditas.json";
 import { Calendar, Map, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,7 +17,7 @@ import {
 const Dashboard = () => {
   const [existingData, setExistingData] = useState([]);
   const [forecastData, setForecastData] = useState([]);
-  const [filter, setFilter] = useState("1168");
+  const [filter, setFilter] = useState("Pilih Komoditas");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const combinedData = useRef({ existing: [], forecast: [] });
@@ -27,11 +28,19 @@ const Dashboard = () => {
     const newFilter = event.target.value;
     setFilter(newFilter);
 
-    // Fetch data based on the new filter
     fetchData(newFilter);
   };
 
+  const options = komoditas.map((item) => ({
+    value: item.fkomcd,
+    label: item.fkomnm,
+  }));
+
   const fetchForecastData = async (newFilter) => {
+    if (!newFilter || newFilter === "Pilih Komoditas") {
+      return { message: "Silahkan pilih komoditas" };
+    }
+
     const requestBody = {
       komoditas: newFilter,
     };
@@ -56,6 +65,10 @@ const Dashboard = () => {
   };
 
   const fetchExistingData = async (newFilter) => {
+    if (!newFilter || newFilter === "Pilih Komoditas") {
+      return { message: "Silahkan pilih komoditas" };
+    }
+
     const requestBody = {
       komoditas: newFilter,
     };
@@ -79,6 +92,7 @@ const Dashboard = () => {
     return data;
   };
 
+  // Update the fetchData function to handle the message
   const fetchData = async (newFilter) => {
     try {
       setLoading(true);
@@ -89,7 +103,12 @@ const Dashboard = () => {
         fetchExistingData(newFilter),
       ]);
 
-      combinedData.current = { forecast, existing };
+      if (forecast.message && existing.message) {
+        setError("Silahkan pilih komoditas");
+        combinedData.current = { forecast: [], existing: [] };
+      } else {
+        combinedData.current = { forecast, existing };
+      }
       logCombinedData();
     } catch (err) {
       setError(err.message);
@@ -181,17 +200,23 @@ const Dashboard = () => {
                 Production Existing & Forecast
               </h3>
               <div className="flex gap-2">
-                <select
-                  value={filter}
-                  onChange={handlefilterChange}
-                  className="bg-green-600 text-white px-3 py-2 rounded"
-                >
-                  {komoditas.map((item) => (
-                    <option key={item.fkomcd} value={item.fkomcd}>
-                      {item.fkomnm}
-                    </option>
-                  ))}
-                </select>
+                <Select
+                  value={
+                    filter === "Pilih Komoditas"
+                      ? { value: "", label: "Pilih Komoditas" }
+                      : options.find((opt) => opt.value === filter)
+                  }
+                  onChange={(selectedOption) =>
+                    handlefilterChange({
+                      target: { value: selectedOption.value },
+                    })
+                  }
+                  options={options}
+                  className="w-64"
+                  classNamePrefix="select"
+                  placeholder="Pilih Komoditas"
+                  isSearchable={true}
+                />
               </div>
             </div>
             {loading ? (

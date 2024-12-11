@@ -79,13 +79,13 @@ const News = () => {
   return (
     <div className="flex flex-col items-center p-0 w-full">
       <div className="flex flex-col items-start w-full px-4 md:px-8 lg:px-16">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8 text-left w-full">
+        <h1 className="text-3xl font-bold text-gray-800 mb-12 text-left w-full">
           News Summary
         </h1>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
         <div className="flex flex-row w-full gap-x-8">
-          <div className="flex flex-col gap-y-10 w-1/2 mt-2">
+          <div className="flex flex-col gap-y-12 w-1/2 mt-2">
             {newsData.map((news, index) => (
               <a
                 href={news.link}

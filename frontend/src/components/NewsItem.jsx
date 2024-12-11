@@ -1,8 +1,10 @@
 import React from "react";
 
-const NewsItem = ({ source, date, title, snippet, imageUrl }) => {
+const NewsItem = ({ source, date, title, snippet, imageUrl, gap = "8" }) => {
   return (
-    <div className="flex flex-row justify-between items-center gap-8 w-[550px] h-[116px]">
+    <div
+      className={`flex flex-row justify-between items-center gap-${gap} w-[550px] h-[116px]`}
+    >
       {/* Konten */}
       <div className="flex flex-col flex-1">
         <div className="flex items-center gap-2 text-sm text-gray-500">
