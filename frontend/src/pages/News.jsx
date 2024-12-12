@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import NewsItem from "../components/NewsItem"; // Pastikan path menuju komponen benar
+import PropTypes from "prop-types";
+import NewsItem from "../components/NewsItem"; // Ensure the path to the component is correct
 
 const News = () => {
   const backend = import.meta.env.VITE_BACKEND_URL;
@@ -7,12 +8,12 @@ const News = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [newsData, setNewsData] = useState([]);
-  const [analysis, setAnalysis] = useState([]);
-  const fetchNewsData = async () => {
+  const [analysis, setAnalysis] = useState("");
+
+  const fetchData = async (url, setData) => {
     try {
       setLoading(true);
-
-      const response = await fetch(`${backend}/news`, {
+      const response = await fetch(url, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -25,10 +26,10 @@ const News = () => {
       }
 
       const data = await response.json();
-      setNewsData(data);
+      setData(data);
     } catch (err) {
       setError(err.message);
-      console.error("Error fetching news data:", err);
+      console.error("Error fetching data:", err);
     } finally {
       setLoading(false);
     }
@@ -37,7 +38,6 @@ const News = () => {
   const fetchAnalysis = async () => {
     try {
       setLoading(true);
-
       const response = await fetch(`${backend}/llm-analysis`, {
         method: "GET",
         headers: {
@@ -58,11 +58,9 @@ const News = () => {
         const { done, value } = await reader.read();
         if (done) break;
         result += decoder.decode(value, { stream: true });
-        console.log(result); // Process the stream data as needed
       }
 
       setAnalysis(result);
-      console.log("Stream complete:", result);
     } catch (err) {
       setError(err.message);
       console.error("Error fetching analysis data:", err);
@@ -72,7 +70,7 @@ const News = () => {
   };
 
   useEffect(() => {
-    fetchNewsData();
+    fetchData(`${backend}/news`, setNewsData);
     fetchAnalysis();
   }, []);
 
@@ -94,7 +92,7 @@ const News = () => {
                 rel="noopener noreferrer"
               >
                 <NewsItem
-                  position={news.position}
+                  position={String(news.position)} // Convert position to string
                   title={news.title}
                   source={news.source}
                   date={news.date}

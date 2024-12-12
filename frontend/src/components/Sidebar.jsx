@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { User, Settings, Bell, Search, Home, Newspaper } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Home, Newspaper, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import logo from "@/assets/logo.png";
 
 const Sidebar = () => {
-  const [activeItem, setActiveItem] = useState("Dashboard");
+  const location = useLocation();
+  const [activeItem, setActiveItem] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 
   // Navigation items array
@@ -22,9 +23,14 @@ const Sidebar = () => {
     },
   ];
 
-  const handleItemClick = (item) => {
-    setActiveItem(item);
-  };
+  useEffect(() => {
+    const currentItem = navigationItems.find(
+      (item) => item.path === location.pathname
+    );
+    if (currentItem) {
+      setActiveItem(currentItem.name);
+    }
+  }, [location.pathname]);
 
   // Filter navigation items based on search term
   const filteredItems = navigationItems.filter((item) =>
@@ -64,7 +70,7 @@ const Sidebar = () => {
                 ? "bg-[#1D7D0D] text-white"
                 : "hover:bg-gray-100"
             }`}
-            onClick={() => handleItemClick(item.name)}
+            onClick={() => setActiveItem(item.name)}
           >
             {item.icon}
             <span className="text-base font-medium">{item.name}</span>

@@ -1,11 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const NewsItem = ({ source, date, title, snippet, imageUrl, gap = "8" }) => {
+  const defaultImage = "path/to/default/image.jpg"; // Replace with the path to your default image
+
   return (
     <div
       className={`flex flex-row justify-between items-center gap-${gap} w-[550px] h-[116px]`}
     >
-      {/* Konten */}
+      {/* Content */}
       <div className="flex flex-col flex-1">
         <div className="flex items-center gap-2 text-sm text-gray-500">
           <span>{source}</span>
@@ -37,15 +40,27 @@ const NewsItem = ({ source, date, title, snippet, imageUrl, gap = "8" }) => {
         <p className="text-sm text-gray-600">{snippet}</p>
       </div>
 
-      {/* Gambar */}
+      {/* Image */}
       <div
         className="w-[100px] h-[100px] bg-cover bg-center rounded-md"
         style={{
-          backgroundImage: `linear-gradient(180.3deg, rgba(0, 0, 0, 0.2) 40.67%, rgba(0, 0, 0, 0) 99.74%), url(${imageUrl})`,
+          backgroundImage: `linear-gradient(180.3deg, rgba(0, 0, 0, 0.2) 40.67%, rgba(0, 0, 0, 0) 99.74%), url(${
+            imageUrl || defaultImage
+          })`,
         }}
+        aria-label={title}
       ></div>
     </div>
   );
+};
+
+NewsItem.propTypes = {
+  source: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  snippet: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string,
+  gap: PropTypes.string,
 };
 
 export default NewsItem;
