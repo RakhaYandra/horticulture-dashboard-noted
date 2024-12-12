@@ -33,11 +33,11 @@ const Sidebar = () => {
 
   return (
     <div className="flex flex-col items-start w-64 h-screen bg-white border-r border-[#dde1e6] p-6 gap-4">
-      <div className="flex items-center justify-center w-full px-4 py-3">
+      <div className="flex items-center justify-center w-full px-6 py-4">
         <img
           src={logo}
           alt="Company Logo"
-          className="h-10 w-auto object-contain hover:opacity-90 transition-opacity"
+          className="h-12 w-auto object-contain hover:opacity-80 hover:scale-105 transition-all duration-200"
         />
       </div>
 
