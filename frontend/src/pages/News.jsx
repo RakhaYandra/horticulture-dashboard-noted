@@ -106,7 +106,7 @@ const News = () => {
             <h2 className="text-2xl font-bold text-gray-800 mb-4 px-5 pt-5 pb-3 border-b border-gray-100">
               Summary
             </h2>
-            <p
+            <div
               className="text-sm text-gray-900 whitespace-pre-wrap px-5 pb-5 min-h-[120px] 
                text-justify leading-relaxed"
               aria-live="polite"
@@ -140,7 +140,7 @@ const News = () => {
               ) : (
                 analysis
               )}
-            </p>
+            </div>
           </div>
         </div>
       </div>

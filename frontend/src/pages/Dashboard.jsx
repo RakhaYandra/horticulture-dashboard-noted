@@ -117,20 +117,32 @@ const Dashboard = () => {
           <p className="text-red-500">{error}</p>
         ) : (
           <LineChart
-            margin={{ left: 50, right: 20 }}
+            margin={{ top: 20, left: 50, right: 20, bottom: 20 }}
             width={600}
             height={300}
             data={data}
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="tahun" />
-            <YAxis dataKey="produksi" />
+            <YAxis
+              dataKey="produksi"
+              domain={[0, "dataMax + 500"]}
+              tickFormatter={(value) => {
+                if (value >= 1000000) {
+                  return `${(value / 1000000).toFixed(1)}M Ton`;
+                } else if (value >= 1000) {
+                  return `${(value / 1000).toFixed(1)}K Ton`;
+                } else {
+                  return `${value} Ton`;
+                }
+              }}
+            />
             <Tooltip />
             <Legend />
             <Line
               type="monotone"
               dataKey="produksi"
-              stroke="#EF4444"
+              stroke="#1D7D0D"
               name="Production"
             />
           </LineChart>
