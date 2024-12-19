@@ -7,7 +7,8 @@ import News from "./pages/News";
 const Layout = ({ children }) => (
   <div className="flex">
     <Sidebar />
-    <div className="flex-grow p-6">{children}</div>
+    <div className="flex-grow p-6 ml-64">{children}</div>{" "}
+    {/* Add margin-left */}
   </div>
 );
 
