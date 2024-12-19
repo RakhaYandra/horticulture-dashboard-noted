@@ -74,8 +74,8 @@ const Dashboard = () => {
         existingResponse.json(),
       ]);
 
-      setForecastData(forecast);
-      setExistingData(existing);
+      setForecastData(forecast.sort((a, b) => a.tahun - b.tahun));
+      setExistingData(existing.sort((a, b) => a.tahun - b.tahun));
     } catch (err) {
       setError(err.message);
       console.error("Error fetching data:", err);
