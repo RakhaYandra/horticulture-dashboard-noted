@@ -128,16 +128,28 @@ const Dashboard = () => {
               dataKey="produksi"
               domain={[0, "dataMax + 500"]}
               tickFormatter={(value) => {
-                if (value >= 1000000) {
-                  return `${(value / 1000000).toFixed(1)}M Ton`;
-                } else if (value >= 1000) {
-                  return `${(value / 1000).toFixed(1)}K Ton`;
+                const formattedValue = value / 100;
+                if (formattedValue >= 1000000) {
+                  return `${(formattedValue / 1000000).toFixed(2)}M Ton`;
+                } else if (formattedValue >= 1000) {
+                  return `${(formattedValue / 1000).toFixed(2)}K Ton`;
                 } else {
-                  return `${value} Ton`;
+                  return `${formattedValue.toFixed(2)} Ton`;
                 }
               }}
             />
-            <Tooltip />
+            <Tooltip
+              formatter={(value) => {
+                const formattedValue = value / 100;
+                if (formattedValue >= 1000000) {
+                  return `${(formattedValue / 1000000).toFixed(2)}M Ton`;
+                } else if (formattedValue >= 1000) {
+                  return `${(formattedValue / 1000).toFixed(2)}K Ton`;
+                } else {
+                  return `${formattedValue.toFixed(2)} Ton`;
+                }
+              }}
+            />
             <Legend />
             <Line
               type="monotone"
