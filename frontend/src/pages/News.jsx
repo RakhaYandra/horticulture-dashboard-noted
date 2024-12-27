@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import NewsItem from "../components/NewsItem"; // Ensure the path to the component is correct
+import NewsItem from "../components/NewsItem"; // Pastikan path ke komponen benar
 
 const News = () => {
   const backend = import.meta.env.VITE_BACKEND_URL;
@@ -75,15 +75,15 @@ const News = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center p-0 w-full">
+    <div className="flex flex-col items-center p-4 w-full">
       <div className="flex flex-col items-start w-full px-4 md:px-8 lg:px-16">
         <h1 className="text-3xl font-bold text-gray-800 mb-12 text-left w-full">
-          News Summary
+          Berita Terkait
         </h1>
-        {loading && <p>Loading...</p>}
+        {loading && <p>Memuat...</p>}
         {error && <p>Error: {error}</p>}
-        <div className="flex flex-row w-full gap-x-8">
-          <div className="flex flex-col gap-y-12 w-1/2 mt-2">
+        <div className="flex flex-col md:flex-row w-full gap-8">
+          <div className="flex flex-col gap-y-12 w-full md:w-1/2 mt-2">
             {newsData.map((news, index) => (
               <a
                 href={news.link}
@@ -92,7 +92,7 @@ const News = () => {
                 rel="noopener noreferrer"
               >
                 <NewsItem
-                  position={String(news.position)} // Convert position to string
+                  position={String(news.position)} // Konversi posisi ke string
                   title={news.title}
                   source={news.source}
                   date={news.date}
@@ -102,9 +102,9 @@ const News = () => {
               </a>
             ))}
           </div>
-          <div className="w-1/2 ml-4 bg-white shadow-xl rounded-2xl border border-gray-150 overflow-hidden">
+          <div className="w-full md:w-1/2 bg-white shadow-xl rounded-2xl border border-gray-150 overflow-hidden">
             <h2 className="text-2xl font-bold text-gray-800 mb-4 px-5 pt-5 pb-3 border-b border-gray-100">
-              Summary
+              Ringkasan
             </h2>
             <div
               className="text-sm text-gray-900 whitespace-pre-wrap px-5 pb-5 min-h-[120px] 
@@ -133,7 +133,7 @@ const News = () => {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </svg>
-                  <span>Loading summary...</span>
+                  <span>Memuat ringkasan...</span>
                 </div>
               ) : error ? (
                 <span className="text-red-600">Error: {error}</span>

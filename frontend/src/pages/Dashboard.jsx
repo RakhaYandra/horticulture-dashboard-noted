@@ -92,6 +92,10 @@ const Dashboard = () => {
     setFilter(selectedOption.value);
   };
 
+  const formatValue = (value) => {
+    return new Intl.NumberFormat("id-ID").format(value);
+  };
+
   const Chart = ({ title, data }) => (
     <Card>
       <CardContent className="p-6">
@@ -112,52 +116,54 @@ const Dashboard = () => {
           />
         </div>
         {loading ? (
-          <p>Loading...</p>
+          <p>Memuat...</p>
         ) : error ? (
           <p className="text-red-500">{error}</p>
         ) : (
-          <LineChart
-            margin={{ top: 20, left: 50, right: 20, bottom: 20 }}
-            width={600}
-            height={300}
-            data={data}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="tahun" />
-            <YAxis
-              dataKey="produksi"
-              domain={[0, "dataMax + 500"]}
-              tickFormatter={(value) => {
-                const formattedValue = value / 100;
-                if (formattedValue >= 1000000) {
-                  return `${(formattedValue / 1000000).toFixed(2)}M Ton`;
-                } else if (formattedValue >= 1000) {
-                  return `${(formattedValue / 1000).toFixed(2)}K Ton`;
-                } else {
-                  return `${formattedValue.toFixed(2)} Ton`;
-                }
-              }}
-            />
-            <Tooltip
-              formatter={(value) => {
-                const formattedValue = value / 100;
-                if (formattedValue >= 1000000) {
-                  return `${(formattedValue / 1000000).toFixed(2)}M Ton`;
-                } else if (formattedValue >= 1000) {
-                  return `${(formattedValue / 1000).toFixed(2)}K Ton`;
-                } else {
-                  return `${formattedValue.toFixed(2)} Ton`;
-                }
-              }}
-            />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="produksi"
-              stroke="#1D7D0D"
-              name="Production"
-            />
-          </LineChart>
+          <div className="overflow-x-auto">
+            <LineChart
+              margin={{ top: 20, left: 50, right: 20, bottom: 20 }}
+              width={600}
+              height={300}
+              data={data}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="tahun" />
+              <YAxis
+                dataKey="produksi"
+                domain={[0, "dataMax + 500"]}
+                tickFormatter={(value) => {
+                  const formattedValue = value / 100;
+                  if (formattedValue >= 1000000) {
+                    return `${(formattedValue / 1000000).toFixed(2)} Juta`;
+                  } else if (formattedValue >= 1000) {
+                    return `${(formattedValue / 1000).toFixed(2)} Ribu`;
+                  } else {
+                    return `${formattedValue.toFixed(2)}`;
+                  }
+                }}
+              />
+              <Tooltip
+                formatter={(value) => {
+                  const formattedValue = value / 100;
+                  if (formattedValue >= 1000000) {
+                    return `${(formattedValue / 1000000).toFixed(2)} Juta`;
+                  } else if (formattedValue >= 1000) {
+                    return `${(formattedValue / 1000).toFixed(2)} Ribu`;
+                  } else {
+                    return `${formattedValue.toFixed(2)}`;
+                  }
+                }}
+              />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="produksi"
+                stroke="#1D7D0D"
+                name="Produksi"
+              />
+            </LineChart>
+          </div>
         )}
       </CardContent>
     </Card>
@@ -166,39 +172,76 @@ const Dashboard = () => {
   return (
     <div className="p-6 space-y-6">
       <h1 className="text-2xl font-semibold">
-        Horticulture Production Dashboard
+        Dashboard Data Produksi Hortikultura Nasional
       </h1>
-      <div className="grid grid-cols-2 gap-6">
-        <Chart title="Production Existing" data={existingData} />
-        <Chart title="Production Forecast" data={forecastData} />
-        <Card>
-          <CardContent className="p-6">
-            <h3 className="text-lg font-semibold mb-4">Weather Forecast</h3>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl">☀️</span>
-                  <span>Today</span>
-                </div>
-                <span>Sunny, 25°C</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl">⛅</span>
-                  <span>Tomorrow</span>
-                </div>
-                <span>Partly Cloudy, 23°C</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl">💧</span>
-                  <span>Precipitation</span>
-                </div>
-                <span>20% chance of rain</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Chart title="Produksi Eksisting" data={existingData} />
+        <Chart title="Prakiraan Produksi" data={forecastData} />
+      </div>
+      <div className="overflow-x-auto">
+        <table className="min-w-full border-collapse mb-6">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="p-3 text-center border-b-2 border-gray-300">No</th>
+              <th className="p-3 text-center border-b-2 border-gray-300">
+                Tahun (Eksisting)
+              </th>
+              <th className="p-3 text-center border-b-2 border-gray-300">
+                Produksi (Eksisting)
+              </th>
+              <th className="p-3 text-center border-b-2 border-gray-300">
+                Produktivitas (Eksisting)
+              </th>
+              <th className="p-3 text-center border-b-2 border-gray-300">
+                Tahun (Prakiraan)
+              </th>
+              <th className="p-3 text-center border-b-2 border-gray-300">
+                Produksi (Prakiraan)
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {loading ? (
+              <tr>
+                <td colSpan="6" className="p-3 text-center">
+                  Memuat...
+                </td>
+              </tr>
+            ) : error ? (
+              <tr>
+                <td colSpan="6" className="p-3 text-center text-red-500">
+                  {error}
+                </td>
+              </tr>
+            ) : (
+              existingData.map((data, index) => (
+                <tr key={index}>
+                  <td className="p-3 border-b border-gray-300 text-center">
+                    {index + 1}
+                  </td>
+                  <td className="p-3 border-b border-gray-300 text-center">
+                    {data.tahun}
+                  </td>
+                  <td className="p-3 border-b border-gray-300 text-center">
+                    {formatValue(data.produksi / 100)}
+                  </td>
+                  <td className="p-3 border-b border-gray-300 text-center">
+                    {formatValue(data.produktivitas / 100)}
+                  </td>
+                  <td className="p-3 border-b border-gray-300 text-center">
+                    {forecastData[index]?.tahun || "-"}
+                  </td>
+                  <td className="p-3 border-b border-gray-300 text-center">
+                    {forecastData[index]?.produksi !== undefined &&
+                    forecastData[index]?.produksi !== null
+                      ? formatValue(forecastData[index].produksi / 100)
+                      : "-"}
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );
