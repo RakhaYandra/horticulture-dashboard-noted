@@ -82,8 +82,8 @@ const News = () => {
         </h1>
         {loading && <p>Memuat...</p>}
         {error && <p>Error: {error}</p>}
-        <div className="flex flex-col md:flex-row w-full gap-8">
-          <div className="flex flex-col gap-y-12 w-full md:w-1/2 mt-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-8">
+          <div className="flex flex-col gap-y-12 mt-2">
             {newsData.map((news, index) => (
               <a
                 href={news.link}
@@ -92,7 +92,7 @@ const News = () => {
                 rel="noopener noreferrer"
               >
                 <NewsItem
-                  position={String(news.position)} // Konversi posisi ke string
+                  position={String(news.position)}
                   title={news.title}
                   source={news.source}
                   date={news.date}
@@ -102,17 +102,13 @@ const News = () => {
               </a>
             ))}
           </div>
-          <div className="w-full md:w-1/2 bg-white shadow-xl rounded-2xl border border-gray-150 overflow-hidden">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4 px-5 pt-5 pb-3 border-b border-gray-100">
+          <div className="bg-white shadow-xl rounded-2xl border border-gray-150 h-fit sticky top-24">
+            <h2 className="text-2xl font-bold text-gray-800 px-5 pt-5 pb-3 border-b border-gray-100">
               Ringkasan
             </h2>
-            <div
-              className="text-sm text-gray-900 whitespace-pre-wrap px-5 pb-5 min-h-[120px] 
-               text-justify leading-relaxed"
-              aria-live="polite"
-            >
+            <div className="px-5 py-4 text-justify" aria-live="polite">
               {loading ? (
-                <div className="flex items-center text-gray-700">
+                <div className="flex items-center text-gray-700 py-2">
                   <svg
                     className="animate-spin -ml-1 mr-3 h-5 w-5"
                     xmlns="http://www.w3.org/2000/svg"
@@ -136,9 +132,11 @@ const News = () => {
                   <span>Memuat ringkasan...</span>
                 </div>
               ) : error ? (
-                <span className="text-red-600">Error: {error}</span>
+                <span className="text-red-600 py-2 block">{error}</span>
               ) : (
-                analysis
+                <div className="text-sm text-gray-900 whitespace-pre-wrap leading-relaxed">
+                  {analysis}
+                </div>
               )}
             </div>
           </div>
