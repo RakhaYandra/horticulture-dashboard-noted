@@ -45,12 +45,14 @@ def get_existing_data(request: DataRequestModel, auth: str = Depends(validate_ap
             "produksi": item["produksi"],
             "produktivitas": item["produktivitas"],
             "tanaman_menghasilkan": item["tanaman_menghasilkan"],
+            "luas_panen": item["luas_panen"],
         }
         for item in raw_data
         if not (
             item.get("produksi") == 0
             and item.get("produktivitas") == 0
             and item.get("tanaman_menghasilkan") == 0
+            and item.get("luas_panen") == 0
         )
     ]
 
