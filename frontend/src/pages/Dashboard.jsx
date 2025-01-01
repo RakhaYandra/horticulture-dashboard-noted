@@ -179,59 +179,95 @@ const Dashboard = () => {
         <Chart title="Prakiraan Produksi" data={forecastData} />
       </div>
       <div className="overflow-x-auto">
-        <table className="min-w-full border-collapse mb-6">
+        <table className="min-w-full border-collapse mb-6 bg-white rounded-lg shadow-md overflow-hidden">
           <thead>
-            <tr className="bg-gray-100">
-              <th className="p-3 text-center border-b-2 border-gray-300">No</th>
-              <th className="p-3 text-center border-b-2 border-gray-300">
-                Tahun (Eksisting)
+            <tr className="bg-gradient-to-r from-gray-100 to-gray-50">
+              <th className="px-6 py-4 text-center border-b-2 border-gray-300 w-16 font-semibold">
+                No
               </th>
-              <th className="p-3 text-center border-b-2 border-gray-300">
-                Produksi (Eksisting)
+
+              <th
+                colSpan="4"
+                className="border-b-2 border-gray-300 bg-green-50/80"
+              >
+                <div className="font-semibold text-green-800 py-3">
+                  Data Eksisting
+                </div>
               </th>
-              <th className="p-3 text-center border-b-2 border-gray-300">
-                Produktivitas (Eksisting)
+
+              <th
+                colSpan="2"
+                className="border-b-2 border-gray-300 bg-blue-50/80"
+              >
+                <div className="font-semibold text-blue-800 py-3">
+                  Data Prakiraan
+                </div>
               </th>
-              <th className="p-3 text-center border-b-2 border-gray-300">
-                Tahun (Prakiraan)
+            </tr>
+
+            <tr className="bg-gray-50">
+              <th className="px-6 py-3"></th>
+              <th className="px-6 py-3 text-sm font-medium border-r border-gray-300">
+                Tahun
               </th>
-              <th className="p-3 text-center border-b-2 border-gray-300">
-                Produksi (Prakiraan)
+              <th className="px-6 py-3 text-sm font-medium border-r border-gray-300">
+                Produksi
               </th>
+              <th className="px-6 py-3 text-sm font-medium border-r border-gray-300">
+                Produktivitas
+              </th>
+              <th className="px-6 py-3 text-sm font-medium border-r border-gray-300">
+                Luas Panen (m²)
+              </th>
+              <th className="px-6 py-3 text-sm font-medium border-r border-gray-300">
+                Tahun
+              </th>
+              <th className="px-6 py-3 text-sm font-medium">Produksi</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan="6" className="p-3 text-center">
-                  Memuat...
+                <td colSpan="7" className="p-4 text-center">
+                  <div className="flex items-center justify-center space-x-2">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-900"></div>
+                    <span>Memuat...</span>
+                  </div>
                 </td>
               </tr>
             ) : error ? (
               <tr>
-                <td colSpan="6" className="p-3 text-center text-red-500">
+                <td colSpan="7" className="p-4 text-center text-red-500">
                   {error}
                 </td>
               </tr>
             ) : (
               existingData.map((data, index) => (
-                <tr key={index}>
-                  <td className="p-3 border-b border-gray-300 text-center">
+                <tr
+                  key={index}
+                  className={`hover:bg-gray-50 ${
+                    index % 2 === 0 ? "bg-white" : "bg-gray-50/50"
+                  }`}
+                >
+                  <td className="px-6 py-4 border-b border-gray-200 text-center font-medium">
                     {index + 1}
                   </td>
-                  <td className="p-3 border-b border-gray-300 text-center">
+                  <td className="px-6 py-4 border-b border-gray-200 text-center">
                     {data.tahun}
                   </td>
-                  <td className="p-3 border-b border-gray-300 text-center">
+                  <td className="px-6 py-4 border-b border-gray-200 text-center">
                     {formatValue(data.produksi / 100)}
                   </td>
-                  <td className="p-3 border-b border-gray-300 text-center">
+                  <td className="px-6 py-4 border-b border-gray-200 text-center">
                     {formatValue(data.produktivitas / 100)}
                   </td>
-                  <td className="p-3 border-b border-gray-300 text-center">
+                  <td className="px-6 py-4 border-b border-gray-200 text-center">
+                    {formatValue(data.luas_panen / 100)}
+                  </td>
+                  <td className="px-6 py-4 border-b border-gray-200 text-center">
                     {forecastData[index]?.tahun || "-"}
                   </td>
-                  <td className="p-3 border-b border-gray-300 text-center">
+                  <td className="px-6 py-4 border-b border-gray-200 text-center">
                     {forecastData[index]?.produksi !== undefined &&
                     forecastData[index]?.produksi !== null
                       ? formatValue(forecastData[index].produksi / 100)
